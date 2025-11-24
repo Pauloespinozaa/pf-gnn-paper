@@ -1,9 +1,32 @@
-# Robust Power Flow Estimation under Topological Variations via Graph Neural Networks with Flat Adapters
+# Topology-Robust Power Flow Estimation using Graph
+Neural Networks with Low-Rank Adapters
 
-**Autores:** XXXXXz
+**Autores:** XXXXX XXXXX
 
 ## Abstract
-Graph Neural Networks (GNNs) have recently emerged as powerful data-driven surrogates for AC power flow estimation, yet their performance often deteriorates under structural variability caused by switching operations or contingency events. This paper presents PFGNNFlatAdapter, a topology-aware architecture that combines topological data augmentation with a low-rank residual adapter to improve robustness without compromising nominal accuracy. The model integrates electrical features (P,Q,Z), bus-type encodings, and a binary connectivity indicator to explicitly capture the local impact of network reconfigurations on global voltage and phase-angle dynamics. Experimental results on the IEEE 14-, 30-, and 118-bus test systems demonstrate state-of-the-art accuracy across both nominal and perturbed topologies, achieving MAPE below 0.2% and R2 > 0.999 in all cases. The framework scales linearly in training time (from 1.3x10^3 s to 2.2x10^3 s) while maintaining stable convergence and consistent error distribution. These findings confirm that combining physically grounded features with parameter-efficient adapters enables robust, scalable, and topology-generalizable power flow estimation for dynamic electrical grids. Compared to a baseline, the proposed model achieves over two orders of magnitude reduction in error under perturbed topologies (MAPE 0.19% vs. 28.6%) while preserving near-perfect accuracy in nominal conditions, confirming its superior robustness and generalization capability.
+Graph Neural Networks (GNNs) have emerged as effective data-driven
+surrogates for AC power flow estimation, yet their performance often degrades
+when the network topology changes due to switching, contingencies,
+or reconfiguration. This work introduces PFGNNFlatAdapter, a topologyaware
+learning framework that enhances generalization under structural variability
+by applying low-rank residual updates over a fixed GNN backbone,
+guided by a global mask that distinguishes nominal from perturbed operating
+regimes. The model incorporates physically grounded covariates, including
+active and reactive power injections (P, Q) and a one-hot encoding of the
+bus type (Slack, PV, PQ), together with a structural covariate Z that captures
+local topological changes at the node level. In addition, including an
+N−k augmentation strategy, extended up to N−3, preserves graph connectivity
+and avoids isolated nodes, generating diverse yet physically meaningful
+training conditions. A dynamic edge index is included for each sample, allowing
+the model to operate directly on varying graph structures without
+retraining. Experiments on the 14, 30, and 118 bus pandapower systems
+show that the proposed approach maintains high accuracy in nominal conditions
+(MAPE below 0.1%) while achieving strong robustness under topological
+perturbations (global MAPE below 1% across all cases), with near-linear
+growth in parameters and runtime. These results indicate that adapter-based
+GNN architectures offer a promising and computationally efficient direction
+for topology-aware power flow estimation in modern, dynamically evolving
+power grids.
 
 ## Estructura del repositorio
 - /code : scripts de entrenamiento e inferencia
